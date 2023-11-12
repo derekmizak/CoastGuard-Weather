@@ -1,6 +1,6 @@
 # Initial Django with Postgres Celery and Redis
 
-To install the weather portal, you will need to install the following:
+To install Django with Celery and Postgres, you need to install the following first:
 
 - Python 3.11 or higher
 - Docker
