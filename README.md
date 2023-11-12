@@ -3,55 +3,21 @@
 To install the weather portal, you will need to install the following:
 
 - Python 3.11 or higher
-- Virtual environement (venv)
-- Django
-- Create a project called project
+- Docker
 
-Create .venv file in the root folder of the project. Add the following:
+after cloning the repository, you will need to run setup.sh to install the required packages.
+First change permission on setup.sh to make it executable:
 
-```# PostgreSQL settings
-POSTGRES_DB=db-name
-POSTGRES_USER=db-user
-POSTGRES_PASSWORD=change-me
+```chmod +x setup.sh```
 
-# Django settings
-DJANGO_SETTINGS_MODULE=project.settings
-SECRET_KEY=change-secret-key to-a-random-string
-DEBUG=True
+Then run the script:
 
-# Redis settings (optional, if you need to customize)
-REDIS_URL=redis://redis:6379/0
-```
+```./setup.sh```
 
-To create virtual environment, run the following command:
+This will install the required packages, create local django project called project, and create a docker-compose.yml and docker file.
 
-```python3.11 -m venv venv```
+To build docker containers, run the following command:
 
-To activate the virtual environment, run the following command:
-
-```source venv/bin/activate```
-
-To install Django, run the following command:
-
-```pip install django~=4.2.0```
-
-Create django project:
-
-```django-admin startproject project .```
-
-In the folder ./project update __init__.py with the following:
-
-```from __future__ import absolute_import, unicode_literals
-__all__ = ('celery_app',)
-```
-
-In settings.py add the following:
-
-```# Example for Redis
-CELERY_BROKER_URL = 'redis://redis:6379/0'
-```
-
-
-
+```docker-compose up --build```
 
 
