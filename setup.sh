@@ -36,9 +36,9 @@ pip install --upgrade pip
 [ $? -eq 0 ] || exit_on_error "Failed to activate Python virtual environment"
 
 # Install Django
-echo "Installing Django..."
-pip install django~=4.2.0
-[ $? -eq 0 ] || exit_on_error "Failed to install Django"
+echo "Installing packages"
+pip install -r requirements.txt
+[ $? -eq 0 ] || exit_on_error "Failed to install packages"
 
 # Create Django project
 echo "Creating Django project..."
