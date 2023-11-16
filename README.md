@@ -1,5 +1,4 @@
-# Initial Django with Postgres Celery and Redis
-
+# Greystone Coastguard Weather Service
 To install Django with Celery and Postgres, you need to install the following first:
 
 - Python 3.11 or higher
