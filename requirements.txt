@@ -1,8 +1,0 @@
-django~=4.2
-celery[redis]
-psycopg2-binary~=2.9
-bleach
-django-cors-headers
-python-dotenv
-
-#TODO: Update versions
