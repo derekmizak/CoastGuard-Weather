@@ -3,9 +3,16 @@ import requests
 
 url = 'https://www.met.ie/Open_Data/xml/Met-Sea-area.xml'
 
-import xml.etree.ElementTree as ET
-
 def xml_to_custom_dictionary(xml_data):
+    """
+    Convert XML data to a custom dictionary format.
+
+    Args:
+        xml_data (str): The XML data to be converted.
+
+    Returns:
+        dict: The converted dictionary containing the extracted data.
+    """
     root = ET.fromstring(xml_data)
 
     # Initialize the dictionary with predefined keys
@@ -60,8 +67,16 @@ def xml_to_custom_dictionary(xml_data):
     return data
 
 
-
 def fetch_xml_from_url(url):
+    """
+    Fetch XML data from a given URL.
+
+    Args:
+        url (str): The URL to fetch the XML data from.
+
+    Returns:
+        str: The fetched XML data.
+    """
     try:
         response = requests.get(url)
         response.raise_for_status()  # This will raise an HTTPError if the HTTP request returned an unsuccessful status code.

@@ -57,6 +57,9 @@ class SeaAreaForecastMetIe(models.Model):
     def __str__(self):
         return f"{self.title}" - "{self.issued_time}"
 
+    class Meta:
+        verbose_name_plural = 'sea area forecasts met ie'
+
 class SourceFormat(models.Model):
     name = models.CharField(max_length=25)
     description = models.CharField(max_length=250)
