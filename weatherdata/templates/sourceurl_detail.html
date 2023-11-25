@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}{{ sourceurl.name }}{% endblock %}
+{% block content %}
+<h2>{{ sourceurl.name }}</h2>
+<p>{{ sourceurl.description }}</p>
+<a href="{% url 'sourceurl_edit' sourceurl.id %}">Edit</a>
+<a href="{% url 'sourceurl_delete' sourceurl.id %}">Delete</a>
+
+{% endblock %}

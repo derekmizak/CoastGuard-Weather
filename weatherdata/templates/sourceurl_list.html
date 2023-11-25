@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Source Formats{% endblock %}
+
+{% block content %}
+<h2>Source Formats</h2>
+<ul>
+    {% for sourceurl in sourceurls %}
+    <li>
+        <a href="{% url 'sourceurl_detail' sourceurl.id %}">{{ sourceurl.name }}</a>
+    </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'sourceurl_add' %}">Add New Source URL</a>
+
+{% endblock %}
+
