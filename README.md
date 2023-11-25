@@ -19,9 +19,11 @@ SECRET_KEY=change-me-to-a-random-string
 DEBUG=True
 
 # Redis settings (optional, if you need to customize)
-REDIS_URL=redis://redis:6379/0```
+REDIS_URL=redis://redis:6379/0
+```
 
 To build docker containers, run the following command:
 
-```docker-compose up --build```
+
+```docker-compose up -d --build```
 
