@@ -4,39 +4,22 @@ To install Django with Celery and Postgres, you need to install the following fi
 - Python 3.11 or higher
 - Docker
 
-after cloning the repository, you will need to run setup.sh to install the required packages.
-First change permission on setup.sh to make it executable:
+## Installation
 
-```chmod +x setup.sh```
+For system to work, you need to create a .env file in the root directory of the project. The .env file should contain the following:
 
-Then run the script:
+```# PostgreSQL settings
+POSTGRES_DB=change-me
+POSTGRES_USER=some-user-name
+POSTGRES_PASSWORD=change-me-to-a-random-string
 
-```./setup.sh```
+# Django settings
+DJANGO_SETTINGS_MODULE=project.settings
+SECRET_KEY=change-me-to-a-random-string
+DEBUG=True
 
-This will install the required packages, create local django project called project, and create a docker-compose.yml and docker file.
-
-Django settings in ```project/settings.py``` need to be updated to include the following:
-
-```
-import os
-from dotenv import load_dotenv
-
-load_dotenv()  # Load environment variables from .env file
-
-SECRET_KEY = os.getenv('SECRET_KEY')
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRES_DB'),
-        'USER': os.getenv('POSTGRES_USER'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        'HOST': 'db',  # This should match the service name in docker-compose
-        'PORT': '5432',
-    }
-}
-```
+# Redis settings (optional, if you need to customize)
+REDIS_URL=redis://redis:6379/0```
 
 To build docker containers, run the following command:
 
