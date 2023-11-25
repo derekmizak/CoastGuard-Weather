@@ -1,7 +1,9 @@
 import xml.etree.ElementTree as ET
 import requests
 
+#TODO: Extract the URL from the database
 url = 'https://www.met.ie/Open_Data/xml/Met-Sea-area.xml'
+
 
 def xml_to_custom_dictionary(xml_data):
     """
@@ -18,37 +20,44 @@ def xml_to_custom_dictionary(xml_data):
     # Initialize the dictionary with predefined keys
     data = {
         'title': '',
-        'until-time': '',
-        'issued-time': '',
-        'gale-status': '',
-        'small-craft-status': '',
-        'met-sit-head': '',
-        'met-sit-time': '',
-        'met-sit-text': '',
-        'outlook-time': '',
-        'outlook-head': '',
-        'outlook-text': '',
-        'swell-status': ''
+        'until_time': '',
+        'issued_time': '',
+        'gale_status': '',
+        'small_craft_status': '',
+        'met_sit_head': '',
+        'met_sit_time': '',
+        'met_sit_text': '',
+        'outlook_time': '',
+        'outlook_head': '',
+        'outlook_text': '',
+        'swell_status': ''
     }
+
 
     # Function to handle specific elements
     def handle_element(elem):
         if elem.tag == 'title':
             data['title'] = elem.text.strip() if elem.text else ''
-        elif elem.tag in ['until', 'issued']:
-            data[f"{elem.tag}-time"] = elem.attrib.get('issued-time') if elem.tag == 'issued' else elem.attrib.get('until-time')
-        elif elem.tag in ['gale', 'small-craft', 'Swell']:
-            data[f"{elem.tag}-status"] = elem.attrib.get('status', '')
+        elif elem.tag == 'issued':
+            data['issued_time'] = elem.attrib.get('issued-time', '')
+        elif elem.tag == 'until':
+            data['until_time'] = elem.attrib.get('until-time', '')
+        elif elem.tag == 'gale':
+            data['gale_status'] = elem.attrib.get('status', '')
+        elif elem.tag == 'small-craft':
+            data['small_craft_status'] = elem.attrib.get('status', '')
+        elif elem.tag == 'Swell':
+            data['swell_status'] = elem.attrib.get('status', '')
         elif elem.tag == 'met-sit':
-            data['met-sit-time'] = elem.attrib.get('time', '')
+            data['met_sit_time'] = elem.attrib.get('time', '')
             for child in elem:
                 if child.tag in ['head', 'text']:
-                    data[f"met-sit-{child.tag}"] = child.text.strip() if child.text else ''
+                    data[f"met_sit_{child.tag}"] = child.text.strip() if child.text else ''
         elif elem.tag == 'outlook':
-            data['outlook-time'] = elem.attrib.get('outlook-time', '')
+            data['outlook_time'] = elem.attrib.get('outlook-time', '')
             for child in elem:
                 if child.tag in ['head', 'text']:
-                    data[f"outlook-{child.tag}"] = child.text.strip() if child.text else ''
+                    data[f"outlook_{child.tag}"] = child.text.strip() if child.text else ''
         elif elem.tag == 'coast':
             handle_coast(elem)
 
@@ -90,4 +99,7 @@ def fetch_xml_from_url(url):
 
 
 weather_data = xml_to_custom_dictionary(fetch_xml_from_url(url))
-print(weather_data)
+
+#TODO: Check if the issued_time and until_time is already in the database - if not add to the database
+for key, value in weather_data.items():
+    print(f"{key}: {value}")

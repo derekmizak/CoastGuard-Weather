@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 
 class WeatherRecord(models.Model):
@@ -60,6 +61,7 @@ class SeaAreaForecastMetIe(models.Model):
     class Meta:
         verbose_name_plural = 'sea area forecasts met ie'
 
+
 class SourceFormat(models.Model):
     name = models.CharField(max_length=25)
     description = models.CharField(max_length=250, blank=True, null=True)
@@ -68,7 +70,8 @@ class SourceFormat(models.Model):
         return self.name
 
     class Meta:
-        verbose_name_plural = 'source formats'  
+        verbose_name_plural = 'source formats'
+
 
 class SourceURL(models.Model):
     name = models.CharField(max_length=25)

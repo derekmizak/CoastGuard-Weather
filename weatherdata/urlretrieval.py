@@ -17,10 +17,10 @@ django.setup()
 # Now you can import your models
 from weatherdata.models import SourceFormat, SourceURL
 
+
 def get_xml_source_urls():
     # Retrieve the SourceFormat instance for 'xml'
     xml_format = SourceFormat.objects.get(name='xml')
-
 
     # Retrieve all SourceURL instances that have the 'xml' format
     xml_urls = SourceURL.objects.filter(format=xml_format)
@@ -30,4 +30,5 @@ def get_xml_source_urls():
 
     return url_list
 
-print(get_xml_source_urls())
+
+#print(get_xml_source_urls())
