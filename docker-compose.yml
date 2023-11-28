@@ -12,6 +12,9 @@ services:
 
   redis:
     image: redis:alpine
+    volumes:
+      - redis_data:/var/lib/redis/data
+    command: redis-server --appendonly yes
 
   web:
     build: .
@@ -34,8 +37,20 @@ services:
     env_file:
       - .env
     depends_on:
-      - web
+      - db
+      - redis
+
+  celerybeat:
+    build: .
+    command: celery -A project beat --loglevel=info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - db
       - redis
 
 volumes:
   postgres_data:
+  redis_data:

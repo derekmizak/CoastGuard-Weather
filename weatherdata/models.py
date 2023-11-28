@@ -31,7 +31,7 @@ class SeaAreaForecastMet(models.Model):
     swell_status = models.CharField(max_length=210)
 
     def __str__(self):
-        return f"{self.title}" - "{self.issued_time}"
+        return self.issued_time
 
     class Meta:
         verbose_name_plural = 'sea area forecasts met ie'
