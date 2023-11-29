@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Latest Foreacast{% endblock %}
+
+{% block content %}
+<!-- your_template_name.html -->
+<h1>Latest Sea Area Forecast</h1>
+{% if latest_forecast %}
+<div class="forecast-section">
+    <p>Issued Time: {{ latest_forecast.issued_time }}</p>
+    <p>Valid Until Time: {{ latest_forecast.until_time }}</p>
+    <p>Gale Warning: {{ latest_forecast.gale_status }}</p>
+    <p>Small Craft Warning: {{ latest_forecast.small_craft_status }}</p>
+    <p>Swell Status: {{ latest_forecast.swell_status }}</p>
+    <H4>{{ latest_forecast.met_sit_head }}</H4>
+    <p>{{ latest_forecast.met_sit_text }}</p>
+    <H4>{{ latest_forecast.outlook_head }} {{ latest_forecast.outlook_time }}</H4>
+
+    <p>{{ latest_forecast.outlook_text }}</p>
+    <br>
+</div>
+    <h3>Areas Weather Forecasts</h3>
+<div class="forecast-section">
+    {% for coast in weather_coasts %}
+        <div>
+            <h4>{{ coast.area }}</h4>
+            <p>Wind: {{ coast.wind }}</p>
+            <p>Weather: {{ coast.weather }}</p>
+            <p>Visibility: {{ coast.visibility }}</p>
+        <br>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No forecasts available.</p>
+{% endif %}
+
+</div>
+
+
+{% endblock %}
+

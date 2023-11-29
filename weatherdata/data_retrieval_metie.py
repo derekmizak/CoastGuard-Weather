@@ -1,8 +1,7 @@
 import xml.etree.ElementTree as ET
 import requests
 
-# TODO: Extract the URL from the database
-url = 'https://www.met.ie/Open_Data/xml/Met-Sea-area.xml'
+#url = 'https://www.met.ie/Open_Data/xml/Met-Sea-area.xml'
 
 
 def fetch_xml_from_url(url):

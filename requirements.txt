@@ -27,4 +27,6 @@ wcwidth==0.2.10
 webencodings==0.5.1
 celery[redis]
 django-celery-beat
+scrapy
+pandas
 

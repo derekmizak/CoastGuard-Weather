@@ -1,0 +1,105 @@
+/* Base styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #eef1f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #0d47a1;
+    color: #ffffff;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    display: inline-block;
+}
+
+nav ul li a:hover,
+nav ul li a:focus {
+    background-color: #1565c0;
+    color: #ffffff;
+}
+
+main {
+    padding: 20px;
+}
+
+h1, h3, h4 {
+    color: #0d47a1;
+}
+
+footer {
+    background-color: #0d47a1;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Forecast styles */
+h1 {
+    margin-bottom: 0.5em;
+}
+
+p, h4 {
+    margin-bottom: 0.75em;
+}
+
+.forecast-section {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.forecast-section h4 {
+    color: #333;
+    margin-top: 0;
+}
+
+.forecast-area {
+    margin-bottom: 30px;
+}
+
+.forecast-area h4 {
+    margin-bottom: 0.5em;
+    color: #0d47a1;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    nav ul li {
+        display: block;
+        margin: 0;
+    }
+
+    nav ul li a {
+        display: block;
+        width: 100%;
+    }
+
+    footer {
+        position: relative;
+    }
+}

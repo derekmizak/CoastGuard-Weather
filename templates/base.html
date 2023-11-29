@@ -1,9 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Greystones Coast Guard Weather</title>
+    <link rel="stylesheet" href="{% static 'weatherdata/styles.css' %}">
 </head>
 <body>
     <header>
@@ -13,6 +15,8 @@
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'sourceformat_list'%}">Source Formats</a></li>
                 <li><a href="{% url 'sourceurl_list'%}">Source URLs</a></li>
+                <li><a href="{% url 'latest_forecast'%}">Forecast</a></li>
+
                 <!-- Add more navigation links here -->
             </ul>
         </nav>

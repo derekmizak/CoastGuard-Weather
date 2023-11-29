@@ -13,10 +13,15 @@ def update_metie_forecast():
     coastal_areas = coast_to_dictionary(xml_records)
 
     forecast_obj, forecast_created = update_forecast_met(forecast_data)
-    print(forecast_obj.id)
+
 
     if forecast_created:
         for coastal_area in coastal_areas:
             update_coastal_areas(coastal_area, forecast_obj)
 
 
+
+
+# TODO: Add tasks for updating the other forecast sources
+def update_irishlights_data():
+    pass
