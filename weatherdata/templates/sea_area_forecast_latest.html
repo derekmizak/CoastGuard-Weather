@@ -1,41 +1,64 @@
 {% extends "base.html" %}
 
-{% block title %}Latest Foreacast{% endblock %}
+{% block title %}Latest Forecast{% endblock %}
 
 {% block content %}
-<!-- your_template_name.html -->
-<h1>Latest Sea Area Forecast</h1>
-{% if latest_forecast %}
-<div class="forecast-section">
-    <p>Issued Time: {{ latest_forecast.issued_time }}</p>
-    <p>Valid Until Time: {{ latest_forecast.until_time }}</p>
-    <p>Gale Warning: {{ latest_forecast.gale_status }}</p>
-    <p>Small Craft Warning: {{ latest_forecast.small_craft_status }}</p>
-    <p>Swell Status: {{ latest_forecast.swell_status }}</p>
-    <H4>{{ latest_forecast.met_sit_head }}</H4>
-    <p>{{ latest_forecast.met_sit_text }}</p>
-    <H4>{{ latest_forecast.outlook_head }} {{ latest_forecast.outlook_time }}</H4>
+    <h1>Latest Sea Area Forecast</h1>
+    {% if latest_forecast %}
+        <div class="top-section-container">
+            <div class="recent-forecast">
+                <p>Issued Time: {{ latest_forecast.issued_time }}</p>
+                <p>Valid Until Time: {{ latest_forecast.until_time }}</p>
+                <p>Gale Warning: {{ latest_forecast.gale_status }}</p>
+                <p>Small Craft Warning: {{ latest_forecast.small_craft_status }}</p>
+                <p>Swell Status: {{ latest_forecast.swell_status }}</p>
+                <h4>{{ latest_forecast.met_sit_head }}</h4>
+                <p>{{ latest_forecast.met_sit_text }}</p>
+                <h4>{{ latest_forecast.outlook_head }} {{ latest_forecast.outlook_time }}</h4>
+                <p>{{ latest_forecast.outlook_text }}</p>
+                <br>
+            </div>
+            <div class="buoy-section">
+                <!-- Buoy Data -->
+                {% if latest_buoy_data %}
+                    <h3>Dublin Bay Buoy (MMSI 992501301)</h3>
+                    <p>53°19.912'N, 006°04.646'W</p>
+                    <p>Updated: {{ latest_buoy_data.DateTransmitted|date:"Y-m-d" }} {{ latest_buoy_data.DateTransmitted|date:"H:i" }}</p>
+                    <h5>Wind:</h5>
+                    <ul>
+                        <li>Speed: {{ latest_buoy_data.AverageWindSpeed }}</li>
+                        <li>Direction: {{ latest_buoy_data.WindDirection }}</li>
+                        <li>Gust: {{ latest_buoy_data.GustSpeed }}</li>
+                        <li>Gust Direction {{ latest_buoy_data.WindGustDirection }}</li>
+                    </ul>
 
-    <p>{{ latest_forecast.outlook_text }}</p>
-    <br>
-</div>
-    <h3>Areas Weather Forecasts</h3>
-<div class="forecast-section">
-    {% for coast in weather_coasts %}
-        <div>
-            <h4>{{ coast.area }}</h4>
-            <p>Wind: {{ coast.wind }}</p>
-            <p>Weather: {{ coast.weather }}</p>
-            <p>Visibility: {{ coast.visibility }}</p>
-        <br>
+                    <h5>Wave:</h5>
+                    <ul>
+                        <li>Height: {{ latest_buoy_data.WaveHeight }}</li>
+                        <li>Period: {{ latest_buoy_data.WavePeriod }}</li>
+                        <li>Sea State: {{ latest_buoy_data.SeaState }}</li>
+                    </ul>
+                    <p>Water Temperature {{ latest_buoy_data.WaterTemperature }} </p>
+                                <!-- Add more fields as needed -->
+                {% else %}
+                    <p>No buoy data available.</p>
+                {% endif %}
+            </div>
         </div>
-    {% endfor %}
-{% else %}
-    <p>No forecasts available.</p>
-{% endif %}
+        <h3>Areas Weather Forecasts</h3>
+        <div class="forecast-section">
+            {% for coast in weather_coasts %}
+                <div>
+                    <h4>{{ coast.area }}</h4>
+                    <p>Wind: {{ coast.wind }}</p>
+                    <p>Weather: {{ coast.weather }}</p>
+                    <p>Visibility: {{ coast.visibility }}</p>
+                    <br>
+                </div>
+            {% endfor %}
+        </div>
 
-</div>
-
-
+    {% else %}
+        <p>No forecasts available.</p>
+    {% endif %}
 {% endblock %}
-

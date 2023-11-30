@@ -1,6 +1,7 @@
 from celery import shared_task
 from weatherdata.data_retrieval_metie import fetch_xml_from_url, xml_to_custom_dictionary, coast_to_dictionary
-from weatherdata.urlretrieval import get_source_urls, update_forecast_met, update_coastal_areas
+from weatherdata.urlretrieval import get_source_urls, update_forecast_met, update_coastal_areas, update_metocean_buoy_data
+from weatherdata.data_retrieval_irishlights import get_data_from_irishlights
 
 
 @shared_task
@@ -23,5 +24,9 @@ def update_metie_forecast():
 
 
 # TODO: Add tasks for updating the other forecast sources
+@shared_task
 def update_irishlights_data():
-    pass
+    list_of_urls = get_source_urls('html')
+    buoy_data = get_data_from_irishlights(list_of_urls[0])
+    for buoy in buoy_data:
+        update_metocean_buoy_data(buoy)

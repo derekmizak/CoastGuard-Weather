@@ -141,5 +141,9 @@ CELERY_BEAT_SCHEDULE = {
         'task': 'weatherdata.tasks.update_metie_forecast',
         'schedule': crontab(minute='*/30'),
     },
+    'update_irishlights_data_every_30_minutes': {
+        'task': 'weatherdata.tasks.update_irishlights_data',
+        'schedule': crontab(minute='*/30'),
+    },
 }
 

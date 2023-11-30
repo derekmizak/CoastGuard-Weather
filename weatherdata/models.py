@@ -38,46 +38,58 @@ class SeaAreaForecastMet(models.Model):
 
 
 class MetOceanBuoyData(models.Model):
-    EightHourlyID = models.intigerField()
-    MMSI = models.intigerField()
-    AverageWindSpeed = models.intigerField()
-    GustSpeed = models.intigerField()
-    WindDirection = models.intigerField()
-    WindGustDirection = models.intigerField()
-    AirTemperature = models.floatField()
-    RelativeHumidity = models.intigerField()
-    DewPoint = models.floatField()
-    AirPressure = models.intigerField()
-    PressureTendency = models.intigerField()
-    HorizVisibility = models.floatField()
-    WaterLevel = models.floatField()
-    WaterLevelTrend = models.intigerField()
-    SurfaceCurrentSpeed = models.intigerField()
-    SurfaceCurrentDirection = models.intigerField()
-    CurrentSpeed2 = models.intigerField()
-    CurrentDirection2 = models.intigerField()
-    MeasurementDepth2 = models.intigerField()
-    CurrentSpeed3 = models.intigerField()
-    CurrentDirection3 = models.intigerField()
-    MeasurementDepth3 = models.intigerField()
-    WaveHeight = models.floatField()
-    WavePeriod = models.intigerField()
-    WaveDirection = models.intigerField()
-    SwellHeight = models.floatField()
-    SwellPeriod = models.intigerField()
-    SwellDirection = models.intigerField()
-    SeaState = models.intigerField()
-    WaterTemperature = models.floatField()
-    Precipitation = models.intigerField()
-    Salinity = models.floatField()
-    Ice = models.charField()
+    EightHourlyID = models.IntegerField()
+    MMSI = models.IntegerField()
+    AverageWindSpeed = models.IntegerField(null=True, blank=True)
+    GustSpeed = models.IntegerField(null=True, blank=True)
+    WindDirection = models.IntegerField(null=True, blank=True)
+    WindGustDirection = models.IntegerField(null=True, blank=True)
+    AirTemperature = models.FloatField(null=True, blank=True)
+    RelativeHumidity = models.IntegerField(null=True, blank=True)
+    DewPoint = models.FloatField(null=True, blank=True)
+    AirPressure = models.IntegerField(null=True, blank=True)
+    PressureTendency = models.IntegerField(null=True, blank=True)
+    HorizVisibility = models.FloatField(null=True, blank=True)
+    WaterLevel = models.FloatField(null=True, blank=True)
+    WaterLevelTrend = models.IntegerField(null=True, blank=True)
+    SurfaceCurrentSpeed = models.IntegerField(null=True, blank=True)
+    SurfaceCurrentDirection = models.IntegerField(null=True, blank=True)
+    CurrentSpeed2 = models.IntegerField(null=True, blank=True)
+    CurrentDirection2 = models.IntegerField(null=True, blank=True)
+    MeasurementDepth2 = models.IntegerField(null=True, blank=True)
+    CurrentSpeed3 = models.IntegerField(null=True, blank=True)
+    CurrentDirection3 = models.IntegerField(null=True, blank=True)
+    MeasurementDepth3 = models.IntegerField(null=True, blank=True)
+    WaveHeight = models.FloatField(null=True, blank=True)
+    WavePeriod = models.IntegerField(null=True, blank=True)
+    WaveDirection = models.IntegerField(null=True, blank=True)
+    SwellHeight = models.FloatField(null=True, blank=True)
+    SwellPeriod = models.IntegerField(null=True, blank=True)
+    SwellDirection = models.IntegerField(null=True, blank=True)
+    SeaState = models.IntegerField(null=True, blank=True)
+    WaterTemperature = models.FloatField(null=True, blank=True)
+    Precipitation = models.IntegerField(null=True, blank=True)
+    Salinity = models.FloatField(null=True, blank=True)
+    Ice = models.CharField(null=True, blank=True)
     DateTransmitted = models.DateTimeField()
 
     def __str__(self):
-        return self.DateTransmitted
+        return self.DateTransmitted.strftime("%Y-%m-%d %H:%M:%S") if self.DateTransmitted else "No Date"
 
     class Meta:
         verbose_name_plural = 'met ocean buoy data'
+
+class WeatherBuoy(models.Model):
+    name = models.CharField(max_length=100)
+    latitude = models.FloatField()
+    longitude = models.FloatField()
+    mmsi = models.IntegerField(unique=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'weather buoys'
 
 class SourceFormat(models.Model):
     name = models.CharField(max_length=25)

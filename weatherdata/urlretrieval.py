@@ -1,6 +1,8 @@
 import os
 import django
 import sys
+from django.utils import timezone
+from datetime import datetime
 
 # Set up the Django environment
 # Get the directory of the current script
@@ -49,43 +51,35 @@ def update_coastal_areas(coastal_areas_data, obj):
     print(coast_obj.id, coast_obj.area)
     return coast_obj
 
-MetOceanBuoyData
 
-def update_metocean_buoy_data(metocean_buoy_data, metocean_buoy_obj
-    metocean_buoy_obj = MetOceanBuoyData.objects.create(
-        EightHourlyID=metocean_buoy_data['EightHourlyID'],
+def update_metocean_buoy_data(metocean_buoy_data):
+    # Ensure MMSI, EightHourlyID, and DateTransmitted contain data and are not null or empty
+    required_fields = ['MMSI', 'EightHourlyID', 'DateTransmitted']
+    if not all(metocean_buoy_data.get(field) for field in required_fields):
+        print("Required fields are missing data.")
+        return None, False
+
+    # Convert empty strings to None for all fields
+    for key, value in metocean_buoy_data.items():
+        if value == '':
+            metocean_buoy_data[key] = None
+
+    # Handle datetime field
+    date_str = metocean_buoy_data['DateTransmitted']
+    naive_datetime = datetime.strptime(date_str, '%d/%m/%Y %H:%M:%S')
+    aware_datetime = timezone.make_aware(naive_datetime, timezone.get_default_timezone())
+    metocean_buoy_data['DateTransmitted'] = aware_datetime
+
+    # Create or update the MetOceanBuoyData object
+    metocean_buoy_obj, created = MetOceanBuoyData.objects.get_or_create(
+        DateTransmitted=metocean_buoy_data['DateTransmitted'],
         MMSI=metocean_buoy_data['MMSI'],
-        AverageWindSpeed=metocean_buoy_data['AverageWindSpeed'],
-        GustSpeed=metocean_buoy_data['GustSpeed'],
-        WindDirection=metocean_buoy_data['WindDirection'],
-        WindGustDirection=metocean_buoy_data['WindGustDirection'],
-        AirTemperature=metocean_buoy_data['AirTemperature'],
-        RelativeHumidity=metocean_buoy_data['RelativeHumidity'],
-        DewPoint=metocean_buoy_data['DewPoint'],
-        AirPressure=metocean_buoy_data['AirPressure'],
-        PressureTendency=metocean_buoy_data['PressureTendency'],
-        HorizVisibility=metocean_buoy_data['HorizVisibility'],
-        WaterLevel=metocean_buoy_data['WaterLevel'],
-        WaterLevelTrend=metocean_buoy_data['WaterLevelTrend'],
-        SurfaceCurrentSpeed=metocean_buoy_data['SurfaceCurrentSpeed'],
-        SurfaceCurrentDirection=metocean_buoy_data['SurfaceCurrentDirection'],
-        CurrentSpeed2=metocean_buoy_data['CurrentSpeed2'],
-        CurrentDirection2=metocean_buoy_data['CurrentDirection2'],
-        MeasurementDepth2=metocean_buoy_data['MeasurementDepth2'],
-        CurrentSpeed3=metocean_buoy_data['CurrentSpeed3'],
-        CurrentDirection3=metocean_buoy_data['CurrentDirection3'],
-        MeasurementDepth3=metocean_buoy_data['MeasurementDepth3'],
-        WaveHeight=metocean_buoy_data['WaveHeight'],
-        WavePeriod=metocean_buoy_data['WavePeriod'],
-        WaveDirection=metocean_buoy_data['WaveDirection'],
-        SwellHeight=metocean_buoy_data['SwellHeight'],
-        SwellPeriod = metocean_buoy_data['SwellPeriod'],
-        SwellDirection = metocean_buoy_data['SwellDirection'],
-        SeaState = metocean_buoy_data['SeaState'],
-        WaterTemperature = metocean_buoy_data['WaterTemperature'],
-        Precipitation = metocean_buoy_data['Precipitation'],
-        Salinity = metocean_buoy_data['Salinity'],
-        Ice = metocean_buoy_data['Ice'],
-        DateTransmitted = metocean_buoy_data['DateTransmitted']
+        EightHourlyID=metocean_buoy_data['EightHourlyID'],
+        defaults=metocean_buoy_data
     )
+
+    if created:
+        print(metocean_buoy_obj.id, metocean_buoy_obj.MMSI)
+
+    return metocean_buoy_obj, created
 

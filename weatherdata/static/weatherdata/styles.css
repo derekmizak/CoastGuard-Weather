@@ -1,11 +1,21 @@
 /* Base styles */
+
+html {
+    height: 100%;
+}
+
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #eef1f5;
     color: #333;
-    margin: 0;
     padding: 0;
 }
+
+
 
 header {
     background-color: #0d47a1;
@@ -40,6 +50,7 @@ nav ul li a:focus {
 
 main {
     padding: 20px;
+    flex: 1;
 }
 
 h1, h3, h4 {
@@ -51,8 +62,6 @@ footer {
     color: white;
     text-align: center;
     padding: 10px;
-    position: absolute;
-    bottom: 0;
     width: 100%;
 }
 
@@ -85,6 +94,75 @@ p, h4 {
 .forecast-area h4 {
     margin-bottom: 0.5em;
     color: #0d47a1;
+}
+/* Top Section Container Styles */
+.top-section-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    flex-wrap: wrap;
+    margin-bottom: 20px; /* Space between top and areas sections */
+}
+
+.recent-forecast, .buoy-section {
+    flex: 1;
+    margin: 10px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+    .top-section-container {
+        flex-direction: column;
+    }
+}
+
+/* Buoy Data Section Styles */
+.buoy-section {
+    background-color: #f8f9fa; /* Light background for the section */
+    border: 1px solid #ddd; /* Border for the section */
+    padding: 15px; /* Padding inside the section */
+    border-radius: 5px; /* Rounded corners */
+    margin-bottom: 20px; /* Space below the section */
+}
+
+.buoy-section h3 {
+    color: #0d47a1; /* Heading color */
+    margin-bottom: 0.5em; /* Space below the heading */
+}
+
+.buoy-section p {
+    margin-bottom: 0.75em; /* Space below each paragraph */
+    color: #333; /* Text color */
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    flex-wrap: wrap;
+}
+
+.flex-item {
+    flex: 1;
+    margin: 10px;
+}
+
+@media (max-width: 768px) {
+    .flex-container {
+        flex-direction: column;
+    }
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    /* Adjustments for smaller screens */
+    .buoy-section {
+        padding: 10px;
+    }
 }
 
 /* Responsive design */
