@@ -1,0 +1,36 @@
+# TODO: Add the buoy data to the forecast page (maybe a separate page?)
+https://cilpublic.cil.ie/metocean/MetOcean.aspx
+EightHourlyID : 8002615
+MMSI : 992501301
+AverageWindSpeed : 20
+GustSpeed : 30
+WindDirection : 26
+WindGustDirection : 57
+AirTemperature :
+RelativeHumidity :
+DewPoint :
+AirPressure :
+PressureTendency : 3
+HorizVisibility : 12.700
+WaterLevel :
+WaterLevelTrend : 3
+SurfaceCurrentSpeed :
+SurfaceCurrentDirection :
+CurrentSpeed2 :
+CurrentDirection2 :
+MeasurementDepth2 :
+CurrentSpeed3 :
+CurrentDirection3 :
+MeasurementDepth3 :
+WaveHeight : 1.700
+WavePeriod : 6
+WaveDirection :
+SwellHeight :
+SwellPeriod :
+SwellDirection :
+SeaState : 13
+WaterTemperature : 10.500
+Precipitation : 7
+Salinity :
+Ice :
+DateTransmitted : 30/11/2023 11:41:00

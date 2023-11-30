@@ -127,14 +127,3 @@ def coast_to_dictionary(xml_data):
     return coastal_areas
 
 
-#xml_from_url = fetch_xml_from_url(url)
-
-#weather_metie_forecast_data = xml_to_custom_dictionary(xml_from_url)
-#coast_metie_forecast_data = coast_to_dictionary(xml_from_url)
-
-# TODO: Check if the issued_time and until_time is already in the database - if not add to the database
-#for key, value in weather_metie_forecast_data.items():
-#    print(f"{key}: {value}")
-
-#for area in coast_metie_forecast_data:
-#    print(area)
