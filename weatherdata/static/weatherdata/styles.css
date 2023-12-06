@@ -1,5 +1,4 @@
 /* Base styles */
-
 html {
     height: 100%;
 }
@@ -13,9 +12,8 @@ body {
     background-color: #eef1f5;
     color: #333;
     padding: 0;
+    font-size: 18px; /* Increased base font size */
 }
-
-
 
 header {
     background-color: #0d47a1;
@@ -53,8 +51,9 @@ main {
     flex: 1;
 }
 
-h1, h3, h4 {
-    color: #0d47a1;
+h1, h2, h3, h4 {
+    font-family: 'Arial', sans-serif; /* Different font for headings */
+    color: #007bff; /* Secondary color for headings */
 }
 
 footer {
@@ -62,10 +61,35 @@ footer {
     color: white;
     text-align: center;
     padding: 10px;
+    position: relative;
+    bottom: 0;
     width: 100%;
 }
 
 /* Forecast styles */
+.forecast-section, .buoy-section {
+    background-color: #f9f9f9; /* Light grey background */
+    border: 1px solid #ddd;
+    padding: 20px; /* Increased padding */
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Soft shadow */
+}
+
+.forecast-section p {
+    margin-bottom: 0.2em;
+    margin-top: 0.2em;
+}
+
+.buoy-section li {
+    margin-top: 3px;
+    margin-bottom: 3px; /* Reduced margin for list items */
+}
+
+.buoy-section h5 {
+    margin-bottom: 0.1em;
+}
+
 h1 {
     margin-bottom: 0.5em;
 }
@@ -74,38 +98,26 @@ p, h4 {
     margin-bottom: 0.75em;
 }
 
-.forecast-section {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 20px;
+ul {
+    padding-left: 20px;
 }
 
-.forecast-section h4 {
-    color: #333;
-    margin-top: 0;
-}
-
-.forecast-area {
-    margin-bottom: 30px;
-}
-
-.forecast-area h4 {
-    margin-bottom: 0.5em;
-    color: #0d47a1;
-}
 /* Top Section Container Styles */
 .top-section-container {
     display: flex;
     justify-content: space-between;
     align-items: start;
     flex-wrap: wrap;
-    margin-bottom: 20px; /* Space between top and areas sections */
+    margin-bottom: 20px;
 }
 
-.recent-forecast, .buoy-section {
-    flex: 1;
+.top-section-container p {
+    margin-bottom: 3px;
+    margin-top: 3px;
+}
+
+.recent-forecast {
+    flex: 2; /* Allocates more space to the forecast section */
     margin: 10px;
     padding: 15px;
     border: 1px solid #ddd;
@@ -113,60 +125,46 @@ p, h4 {
     background-color: #ffffff;
 }
 
-/* Adjustments for smaller screens */
+.buoy-section {
+    flex: 1; /* Makes buoy data columns narrower */
+    margin: 10px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+
 @media (max-width: 768px) {
     .top-section-container {
         flex-direction: column;
     }
+    .recent-forecast, .buoy-section {
+        flex: 1; /* Ensures equal width on smaller screens */
+    }
 }
 
 /* Buoy Data Section Styles */
-.buoy-section {
-    background-color: #f8f9fa; /* Light background for the section */
-    border: 1px solid #ddd; /* Border for the section */
-    padding: 15px; /* Padding inside the section */
-    border-radius: 5px; /* Rounded corners */
-    margin-bottom: 20px; /* Space below the section */
-}
-
 .buoy-section h3 {
-    color: #0d47a1; /* Heading color */
-    margin-bottom: 0.5em; /* Space below the heading */
+    margin-bottom: 0.5em;
 }
 
-.buoy-section p {
-    margin-bottom: 0.75em; /* Space below each paragraph */
-    color: #333; /* Text color */
+
+/* Interactive Elements */
+a:hover {
+    color: #0056b3;
 }
 
-.flex-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-    flex-wrap: wrap;
+/* Data Presentation */
+.data-not-available {
+    color: #999;
 }
 
-.flex-item {
-    flex: 1;
-    margin: 10px;
-}
-
+/* Responsive Design Adjustments */
 @media (max-width: 768px) {
-    .flex-container {
-        flex-direction: column;
-    }
-}
-
-/* Responsive design adjustments */
-@media (max-width: 768px) {
-    /* Adjustments for smaller screens */
     .buoy-section {
         padding: 10px;
     }
-}
 
-/* Responsive design */
-@media (max-width: 768px) {
     nav ul li {
         display: block;
         margin: 0;
@@ -175,9 +173,5 @@ p, h4 {
     nav ul li a {
         display: block;
         width: 100%;
-    }
-
-    footer {
-        position: relative;
     }
 }

@@ -26,19 +26,50 @@
                     <p>Updated: {{ latest_buoy_data.DateTransmitted|date:"Y-m-d" }} {{ latest_buoy_data.DateTransmitted|date:"H:i" }}</p>
                     <h5>Wind:</h5>
                     <ul>
-                        <li>Speed: {{ latest_buoy_data.AverageWindSpeed }}</li>
-                        <li>Direction: {{ latest_buoy_data.WindDirection }}</li>
-                        <li>Gust: {{ latest_buoy_data.GustSpeed }}</li>
-                        <li>Gust Direction {{ latest_buoy_data.WindGustDirection }}</li>
+                        <li>Speed: {{ latest_buoy_data.AverageWindSpeed }} knots</li>
+                        <li>Direction: {{ latest_buoy_data.WindDirection }} deg (true)</li>
+                        <li>Gust: {{ latest_buoy_data.GustSpeed }} knots</li>
+                        <li>Gust Direction: {{ latest_buoy_data.WindGustDirection }} deg (true)</li>
                     </ul>
 
                     <h5>Wave:</h5>
                     <ul>
-                        <li>Height: {{ latest_buoy_data.WaveHeight }}</li>
-                        <li>Period: {{ latest_buoy_data.WavePeriod }}</li>
-                        <li>Sea State: {{ latest_buoy_data.SeaState }}</li>
+                        <li>Height: {{ latest_buoy_data.WaveHeight }} meters</li>
+                        <li>Period: {{ latest_buoy_data.WavePeriod }} seconds</li>
+
                     </ul>
-                    <p>Water Temperature {{ latest_buoy_data.WaterTemperature }} </p>
+                    <p>Water Temperature: {{ latest_buoy_data.WaterTemperature }} C</p>
+                                <!-- Add more fields as needed -->
+                {% else %}
+                    <p>No buoy data available.</p>
+                {% endif %}
+            </div>
+            <div class="buoy-section">
+                <!-- Buoy Data -->
+                {% if latest_metie_buoy_data %}
+                    <h3>Met.ie M2 buoy</h3>
+                    <p>53° 28′ 48″N 5° 25′ 30″W</p>
+                    <p>Updated: {{ latest_metie_buoy_data.time|date:"Y-m-d H:i" }} </p>
+                    <h5>Wind:</h5>
+                    <ul>
+                        <li>Speed: {{ latest_metie_buoy_data.WindSpeed |default_if_none:"Data not available" }} knots</li>
+                        <li>Direction: {{ latest_metie_buoy_data.WindDirection |default_if_none:"Data not available"}} deg (true)</li>
+                        <li>Gust: {{ latest_metie_buoy_data.Gust |default_if_none:"Data not available"}} knots</li>
+
+                    </ul>
+
+                    <h5>Wave:</h5>
+                    <ul>
+                        <li>Height: {{ latest_metie_buoy_data.WaveHeight |default_if_none:"Data not available"}} meters</li>
+                        <li>Period: {{ latest_metie_buoy_dataa.WavePeriod |default_if_none:"Data not available"}} seconds</li>
+                        <li>Wave Direction: {{ latest_metie_buoy_data.MeanWaveDirection |default_if_none:"Data not available"}} deg (true)</li>
+                        <li>Max wave High: {{ latest_metie_buoy_data.Hmax |default_if_none:"Data not available"}} meters</li>
+                    </ul>
+                    <p>Water Temperature: {{ latest_metie_buoy_data.SeaTemperature |default_if_none:"Data not available"}} C</p>
+                    <p>Air Temperature: {{ latest_metie_buoy_data.AirTemperature |default_if_none:"Data not available"}} C</p>
+                    <p>Pressure: {{ latest_metie_buoy_data.AtmosphericPressure |default_if_none:"Data not available"}} milibar</p>
+                    <p>Relative Humidity: {{ latest_metie_buoy_data.RelativeHumidity |default_if_none:"Data not available"}} %</p>
+
                                 <!-- Add more fields as needed -->
                 {% else %}
                     <p>No buoy data available.</p>

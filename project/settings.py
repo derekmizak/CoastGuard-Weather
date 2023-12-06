@@ -145,5 +145,12 @@ CELERY_BEAT_SCHEDULE = {
         'task': 'weatherdata.tasks.update_irishlights_data',
         'schedule': crontab(minute='*/30'),
     },
+    'update_metie_buoy_data_model_every_30_minutes': {
+        'task': 'weatherdata.tasks.update_metie_buoy_data_model',
+        'schedule': crontab(minute='*/30'),
+    },
 }
+
+#update_irishlights_data
+#update_irishlights_data
 

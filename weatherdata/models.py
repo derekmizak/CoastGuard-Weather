@@ -79,6 +79,39 @@ class MetOceanBuoyData(models.Model):
     class Meta:
         verbose_name_plural = 'met ocean buoy data'
 
+class MetIeBuoyData(models.Model):
+
+    station_id = models.CharField(max_length=20)
+    CallSign = models.CharField(max_length=20)
+    longitude = models.FloatField()
+    latitude = models.FloatField()
+    time = models.DateTimeField()
+    AtmosphericPressure = models.FloatField(null=True, blank=True)
+    WindDirection = models.FloatField(null=True, blank=True)
+    WindSpeed = models.FloatField(null=True, blank=True)
+    Gust = models.FloatField(null=True, blank=True)
+    WaveHeight = models.FloatField(null=True, blank=True)
+    WavePeriod = models.FloatField(null=True, blank=True)
+    MeanWaveDirection = models.FloatField(null=True, blank=True)
+    Hmax = models.FloatField(null=True, blank=True)
+    AirTemperature = models.FloatField(null=True, blank=True)
+    DewPoint = models.FloatField(null=True, blank=True)
+    SeaTemperature = models.FloatField(null=True, blank=True)
+    salinity = models.FloatField(null=True, blank=True)
+    RelativeHumidity = models.FloatField(null=True, blank=True)
+    SprTp = models.FloatField(null=True, blank=True)
+    ThTp = models.FloatField(null=True, blank=True)
+    Tp = models.FloatField(null=True, blank=True)
+    QC_Flag = models.FloatField(null=True, blank=True)
+
+    def __str__(self):
+        # Format the time field as a string
+        time_str = self.time.strftime("%Y-%m-%d %H:%M:%S")
+        return f"{self.station_id} - {time_str}"
+
+    class Meta:
+        verbose_name_plural = 'irish lights buoy data'
+
 class WeatherBuoy(models.Model):
     name = models.CharField(max_length=100)
     latitude = models.FloatField()
@@ -104,7 +137,7 @@ class SourceFormat(models.Model):
 
 class SourceURL(models.Model):
     name = models.CharField(max_length=25)
-    url = models.CharField(max_length=250)
+    url = models.CharField(max_length=500)
     description = models.CharField(max_length=250, blank=True, null=True)
     format = models.ForeignKey(SourceFormat, on_delete=models.CASCADE)
 
