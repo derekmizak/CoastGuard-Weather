@@ -21,6 +21,7 @@ def latest_forecast_view(request):
     print("Wind Speed: ", latest_metie_buoy_data.WindSpeed)
     print("Wind Direction: ", latest_metie_buoy_data.WindDirection)
     print("Gust: ", latest_metie_buoy_data.Gust)
+    print("Wave period: ", latest_metie_buoy_data.WavePeriod)
     print("Atmospheric Pressure: ", latest_metie_buoy_data.AtmosphericPressure)
     print("Air Temperature: ", latest_metie_buoy_data.AirTemperature)
     print("Mean Wave Direction: ", latest_metie_buoy_data.MeanWaveDirection)

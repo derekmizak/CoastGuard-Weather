@@ -12,36 +12,76 @@ body {
     background-color: #eef1f5;
     color: #333;
     padding: 0;
-    font-size: 18px; /* Increased base font size */
+    font-size: 18px;
 }
 
 header {
     background-color: #0d47a1;
     color: #ffffff;
-    padding: 10px 0;
 }
 
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.logo {
+    flex: 0 0 auto;
+}
+
+.logo img {
+    max-height: 50px;
+    width: auto;
+    padding: 5px;
+}
+
+.nav-main {
+    flex-grow: 1;
     text-align: center;
 }
 
-nav ul li {
-    display: inline;
+.nav-main ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-nav ul li a {
+.nav-main ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+.nav-main ul li a {
     text-decoration: none;
     color: white;
     padding: 10px 15px;
-    display: inline-block;
 }
 
-nav ul li a:hover,
-nav ul li a:focus {
+.nav-main ul li a:hover,
+.nav-main ul li a:focus {
+    background-color: #1565c0;
+    color: #ffffff;
+}
+
+.auth-links {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.auth-links a, .auth-links span {
+    color: white;
+    text-decoration: none;
+    margin-left: 15px;
+    padding: 10px 15px;
+}
+
+.auth-links a:hover {
     background-color: #1565c0;
     color: #ffffff;
 }
@@ -49,11 +89,12 @@ nav ul li a:focus {
 main {
     padding: 20px;
     flex: 1;
+    margin-bottom: 0; /* Reduce gap above footer */
 }
 
 h1, h2, h3, h4 {
-    font-family: 'Arial', sans-serif; /* Different font for headings */
-    color: #007bff; /* Secondary color for headings */
+    font-family: 'Arial', sans-serif;
+    color: #007bff;
 }
 
 footer {
@@ -61,29 +102,54 @@ footer {
     color: white;
     text-align: center;
     padding: 10px;
-    position: relative;
-    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.footer-content {
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.acknowledgments {
+    font-size: smaller;
+    text-align: left;
+    margin-left: 20px; /* Adjust as needed */
+}
+
+.acknowledgments .logos {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Adjust the space between logos */
+}
+
+.acknowledgments .logo {
+    height: 50px; /* Adjust the size of logos */
+    width: auto;
 }
 
 /* Forecast styles */
 .forecast-section, .buoy-section {
-    background-color: #f9f9f9; /* Light grey background */
+    background-color: #f9f9f9;
     border: 1px solid #ddd;
-    padding: 20px; /* Increased padding */
+    padding: 20px;
     border-radius: 5px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Soft shadow */
+    margin-bottom: 10px; /* Reduced gap between sections */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.forecast-section p {
+.forecast-section p, .buoy-section p {
     margin-bottom: 0.2em;
     margin-top: 0.2em;
 }
 
 .buoy-section li {
     margin-top: 3px;
-    margin-bottom: 3px; /* Reduced margin for list items */
+    margin-bottom: 3px;
 }
 
 .buoy-section h5 {
@@ -108,7 +174,8 @@ ul {
     justify-content: space-between;
     align-items: start;
     flex-wrap: wrap;
-    margin-bottom: 20px;
+    margin-bottom: 5px; /* Reduced gap between top and bottom containers */
+
 }
 
 .top-section-container p {
@@ -117,7 +184,7 @@ ul {
 }
 
 .recent-forecast {
-    flex: 2; /* Allocates more space to the forecast section */
+    flex: 2;
     margin: 10px;
     padding: 15px;
     border: 1px solid #ddd;
@@ -126,7 +193,7 @@ ul {
 }
 
 .buoy-section {
-    flex: 1; /* Makes buoy data columns narrower */
+    flex: 1;
     margin: 10px;
     padding: 15px;
     border: 1px solid #ddd;
@@ -134,44 +201,53 @@ ul {
     background-color: #ffffff;
 }
 
+.warning {
+    color: red; /* Change the text color to red for warnings */
+    font-weight: bold; /* Optional: Make the text bold */
+}
+
+.icon {
+    margin-right: 5px; /* Space between the icon and the text */
+}
+
 @media (max-width: 768px) {
     .top-section-container {
         flex-direction: column;
     }
     .recent-forecast, .buoy-section {
-        flex: 1; /* Ensures equal width on smaller screens */
+        flex: 1;
     }
-}
-
-/* Buoy Data Section Styles */
-.buoy-section h3 {
-    margin-bottom: 0.5em;
-}
-
-
-/* Interactive Elements */
-a:hover {
-    color: #0056b3;
-}
-
-/* Data Presentation */
-.data-not-available {
-    color: #999;
-}
-
-/* Responsive Design Adjustments */
-@media (max-width: 768px) {
-    .buoy-section {
-        padding: 10px;
+    nav {
+        flex-direction: column;
     }
-
-    nav ul li {
-        display: block;
-        margin: 0;
-    }
-
-    nav ul li a {
-        display: block;
+    .nav-main, .auth-links {
         width: 100%;
+        justify-content: center;
+    }
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .acknowledgments .logo {
+        height: 30px;
+    }
+}
+
+/* Style for the copyright section */
+copyright {
+    text-align: right;
+    margin-right: 20px; /* Adjust as needed */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .acknowledgments, .copyright {
+        margin-left: 0;
+        margin-right: 0;
     }
 }

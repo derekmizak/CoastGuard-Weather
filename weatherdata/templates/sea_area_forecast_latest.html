@@ -9,8 +9,20 @@
             <div class="recent-forecast">
                 <p>Issued Time: {{ latest_forecast.issued_time }}</p>
                 <p>Valid Until Time: {{ latest_forecast.until_time }}</p>
-                <p>Gale Warning: {{ latest_forecast.gale_status }}</p>
-                <p>Small Craft Warning: {{ latest_forecast.small_craft_status }}</p>
+                <p class="{% if latest_forecast.gale_status == 'yes' %}warning{% endif %}">
+                        Gale Warning:
+                        {% if latest_forecast.gale_status == 'yes' %}
+                            <span class="icon">⚠️</span>
+                        {% endif %}
+                        {{ latest_forecast.gale_status }}
+                </p>
+                <p class="{% if latest_forecast.small_craft_status == 'yes' %}warning{% endif %}">
+                    Small Craft Warning:
+                    {% if latest_forecast.small_craft_status == 'yes' %}
+                        <span class="icon">⚠️</span>
+                    {% endif %}
+                    {{ latest_forecast.small_craft_status }}
+                </p>
                 <p>Swell Status: {{ latest_forecast.swell_status }}</p>
                 <h4>{{ latest_forecast.met_sit_head }}</h4>
                 <p>{{ latest_forecast.met_sit_text }}</p>
@@ -61,7 +73,7 @@
                     <h5>Wave:</h5>
                     <ul>
                         <li>Height: {{ latest_metie_buoy_data.WaveHeight |default_if_none:"Data not available"}} meters</li>
-                        <li>Period: {{ latest_metie_buoy_dataa.WavePeriod |default_if_none:"Data not available"}} seconds</li>
+                        <li>Period: {{ latest_metie_buoy_data.WavePeriod |default_if_none:"Data not available"}} seconds</li>
                         <li>Wave Direction: {{ latest_metie_buoy_data.MeanWaveDirection |default_if_none:"Data not available"}} deg (true)</li>
                         <li>Max wave High: {{ latest_metie_buoy_data.Hmax |default_if_none:"Data not available"}} meters</li>
                     </ul>

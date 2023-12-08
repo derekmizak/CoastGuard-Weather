@@ -151,6 +151,5 @@ CELERY_BEAT_SCHEDULE = {
     },
 }
 
-#update_irishlights_data
-#update_irishlights_data
-
+LOGIN_REDIRECT_URL = 'latest_forecast'
+LOGOUT_REDIRECT_URL = 'latest_forecast'

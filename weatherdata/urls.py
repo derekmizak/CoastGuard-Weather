@@ -6,7 +6,8 @@ from .views import (SourceFormatListView, SourceFormatDetailView,
                     SourceURLDeleteView, latest_forecast_view)
 
 urlpatterns = [
-    path('', Home.as_view(), name='home'),
+    #path('', Home.as_view(), name='home'),
+    path('', latest_forecast_view, name='home'),
     path('sourceformat/', SourceFormatListView.as_view(), name='sourceformat_list'),
     path('sourceformat/<int:pk>/', SourceFormatDetailView.as_view(), name='sourceformat_detail'),
     path('sourceformat/add/', SourceFormatCreateView.as_view(), name='sourceformat_add'),

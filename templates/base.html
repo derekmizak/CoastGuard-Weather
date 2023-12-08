@@ -11,14 +11,31 @@
     <header>
         <!-- Navigation Bar -->
         <nav>
+            <div class="logo">
+                <a href="{% url 'home' %}">
+                    <img class="logo-image" src="{% static 'weatherdata/400px-Irish_Coast_Guard_emblem.png' %}" alt="Greystones Coast Guard Logo">
+                </a>
+            </div>
+        <div class="nav-main">
             <ul>
                 <li><a href="{% url 'home' %}">Home</a></li>
+                {% if request.user.is_authenticated %}
                 <li><a href="{% url 'sourceformat_list'%}">Source Formats</a></li>
                 <li><a href="{% url 'sourceurl_list'%}">Source URLs</a></li>
+                {% endif %}
                 <li><a href="{% url 'latest_forecast'%}">Forecast</a></li>
-
-                <!-- Add more navigation links here -->
             </ul>
+        </div>
+                <!-- Add more navigation links here -->
+                <div class="auth-links">
+                    {% if not request.user.is_authenticated %}
+                        <a href="{% url 'login' %}" class="login-link">Login</a>
+                    {% else %}
+                        <span class="user-name">Hello, {{ request.user.username }}</span>
+                        <a href="{% url 'logout' %}" class="logout-link">Logout</a></li>
+                    {% endif %}
+                </div>
+            
         </nav>
     </header>
 
@@ -31,7 +48,24 @@
 
     <footer>
         <!-- Footer content -->
-        <p>&copy; 2023 Greystones Coast Guard Unit</p>
+        
+        <div class="footer-content">
+        <div class="acknowledgments">
+            <p>All data on the website is provided thanks to generous courtesy of:</p>
+                <div class="logos">
+                    <a href="https://met.ie" target="_blank">
+                        <img src="{% static 'weatherdata/met-eireann-small.png' %}" alt="Met Éireann Logo" class="logo">
+                    </a>
+                    <a href="https://irishlights.ie" target="_blank">
+                        <img src="{% static 'weatherdata/IrishLights.png' %}" alt="Irish Lights Commissioners Logo" class="logo">
+                    </a>
+                </div>
+            
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Greystones Coast Guard Unit</p>
+        </div>
+    </div>
     </footer>
 
     <!-- JavaScript Links -->
