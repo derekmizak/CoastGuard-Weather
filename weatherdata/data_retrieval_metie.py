@@ -51,7 +51,8 @@ def xml_to_custom_dictionary(xml_data):
         'outlook_time': '',
         'outlook_head': '',
         'outlook_text': '',
-        'swell_status': ''
+        'swell_status': '',
+        'swell_text': ''
     }
 
     # Function to handle specific elements
@@ -66,8 +67,9 @@ def xml_to_custom_dictionary(xml_data):
             data['gale_status'] = elem.attrib.get('status', '')
         elif elem.tag == 'small-craft':
             data['small_craft_status'] = elem.attrib.get('status', '')
-        elif elem.tag == 'Swell':
+        elif elem.tag == 'swell':
             data['swell_status'] = elem.attrib.get('status', '')
+            data['swell_text'] = elem.text.strip() if elem.text else ''
         elif elem.tag == 'met-sit':
             data['met_sit_time'] = elem.attrib.get('time', '')
             for child in elem:

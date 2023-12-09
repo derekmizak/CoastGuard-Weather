@@ -3,10 +3,10 @@ from django.db import models
 
 # Create your models here.
 class WeatherForecastCoast(models.Model):
-    area = models.CharField(max_length=300)
-    wind = models.CharField(max_length=300)
+    area = models.CharField(max_length=600)
+    wind = models.CharField(max_length=600)
     weather = models.TextField()
-    visibility = models.CharField(max_length=300)
+    visibility = models.CharField(max_length=600)
     sea_area_forecast_met = models.ForeignKey('SeaAreaForecastMet', on_delete=models.CASCADE)
 
     def __str__(self):
@@ -17,18 +17,19 @@ class WeatherForecastCoast(models.Model):
 
 
 class SeaAreaForecastMet(models.Model):
-    title = models.CharField(max_length=200)
-    until_time = models.CharField(max_length=250)
-    issued_time = models.CharField(max_length=250)
-    gale_status = models.CharField(max_length=10)
-    small_craft_status = models.CharField(max_length=10)
-    met_sit_head = models.TextField()
+    title = models.CharField(max_length=200, null=True, blank=True)
+    until_time = models.CharField(max_length=250, null=True, blank=True)
+    issued_time = models.CharField(max_length=250, null=True, blank=True)
+    gale_status = models.CharField(max_length=10, null=True, blank=True)
+    small_craft_status = models.CharField(max_length=10,null=True, blank=True)
+    met_sit_head = models.TextField(null=True, blank=True)
     met_sit_time = models.CharField(max_length=250)
-    met_sit_text = models.TextField()
-    outlook_time = models.CharField(max_length=250)
-    outlook_head = models.TextField()
-    outlook_text = models.TextField()
-    swell_status = models.CharField(max_length=210)
+    met_sit_text = models.TextField(null=True, blank=True)
+    outlook_time = models.CharField(max_length=250, null=True, blank=True)
+    outlook_head = models.TextField(null=True, blank=True)
+    outlook_text = models.TextField(null=True, blank=True)
+    swell_status = models.CharField(max_length=210, null=True, blank=True)
+    swell_text = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.issued_time

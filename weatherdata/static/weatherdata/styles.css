@@ -92,10 +92,13 @@ main {
     margin-bottom: 0; /* Reduce gap above footer */
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3 {
     font-family: 'Arial', sans-serif;
     color: #007bff;
+    margin-bottom: 5px;
+    margin-top: 5px;
 }
+
 
 footer {
     background-color: #0d47a1;
@@ -160,8 +163,22 @@ h1 {
     margin-bottom: 0.5em;
 }
 
-p, h4 {
+p {
     margin-bottom: 0.75em;
+}
+
+.top-section-container h4 {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-family: 'Arial', sans-serif;
+    color: #007bff;
+}
+
+.forecast-section h4 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: 'Arial', sans-serif;
+    color: #007bff;
 }
 
 ul {
@@ -234,7 +251,7 @@ ul {
 }
 
 /* Style for the copyright section */
-copyright {
+.copyright {
     text-align: right;
     margin-right: 20px; /* Adjust as needed */
 }

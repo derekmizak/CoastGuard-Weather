@@ -5,23 +5,33 @@ from weatherdata.urlretrieval import (get_source_urls, update_forecast_met, upda
 from weatherdata.data_retrieval_irishlights import get_data_from_irishlights
 from weatherdata.data_retrieval_buoy_metie import get_data_from_metie_buoy
 
+from django.db.utils import DataError
+
 
 @shared_task
 def update_metie_forecast():
-    list_of_urls = get_source_urls('xml')
-    xml_records = fetch_xml_from_url(list_of_urls[0])
+    try:
+        print("Updating met.ie forecast data")
+        list_of_urls = get_source_urls('xml')
+        print("List of urls: ", list_of_urls)
+        xml_records = fetch_xml_from_url(list_of_urls[0])
 
-    forecast_data = xml_to_custom_dictionary(xml_records)
+        forecast_data = xml_to_custom_dictionary(xml_records)
+        print("Forecast data: ", forecast_data)
 
-    coastal_areas = coast_to_dictionary(xml_records)
+        coastal_areas = coast_to_dictionary(xml_records)
+        print ("Coastal areas: ", coastal_areas)
 
-    forecast_obj, forecast_created = update_forecast_met(forecast_data)
+        forecast_obj, forecast_created = update_forecast_met(forecast_data)
 
 
-    if forecast_created:
-        for coastal_area in coastal_areas:
-            update_coastal_areas(coastal_area, forecast_obj)
-
+        if forecast_created:
+            print("New forecast created")
+            for coastal_area in coastal_areas:
+                print("Coastal area: ", coastal_area)
+                update_coastal_areas(coastal_area, forecast_obj)
+    except DataError as e:
+        print(f"DataError occurred: {e}")
 
 
 
@@ -35,12 +45,14 @@ def update_irishlights_data():
 
 @shared_task
 def update_metie_buoy_data_model():
-    print("Updating met.ie buoy data")
+
     list_of_urls = get_source_urls('json')
-    print("List of urls: ", list_of_urls)
+
     buoy_data = get_data_from_metie_buoy(list_of_urls[0])
 
-    for buoy in buoy_data:
-        print("Updating buoy data for buoy: ", buoy['station_id'])
-        update_metie_buoy_data(buoy)
+    if buoy_data:
+
+        for buoy in buoy_data:
+
+            update_metie_buoy_data(buoy)
 
