@@ -58,6 +58,8 @@ services:
     volumes:
       - static_volume:/app/static
       - media_volume:/app/media
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
     ports:
       - "80:80"
       - "443:443"
