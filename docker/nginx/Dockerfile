@@ -5,7 +5,7 @@ FROM nginx:alpine
 RUN rm /etc/nginx/conf.d/default.conf
 
 # Copy the configuration file from the current directory to the container
-COPY ./docker/nginx/django.conf /etc/nginx/conf.d/django.conf
+COPY ./docker/nginx/django.conf /etc/nginx/conf.d/
 
 # Create a new user 'nginxuser' and group 'nginxgroup'
 # and set the ownership of relevant directories
