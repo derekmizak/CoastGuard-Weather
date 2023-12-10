@@ -29,4 +29,5 @@ celery[redis]
 django-celery-beat
 scrapy
 pandas
+gunicorn
 
