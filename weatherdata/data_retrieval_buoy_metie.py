@@ -8,7 +8,7 @@ import urllib.parse, requests, json
 
 def create_url_for_metie_buoy_data(url):
     # Calculate the current time minus 60 minutes
-    time_threshold = datetime.utcnow() - timedelta(minutes=120)
+    time_threshold = datetime.utcnow() - timedelta(minutes=360)
 
     # Format the time in the required format (ISO 8601 format)
     formatted_time = time_threshold.strftime('%Y-%m-%dT%H:%M:%SZ')
