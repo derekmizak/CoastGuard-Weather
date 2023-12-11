@@ -152,6 +152,11 @@ CELERY_BEAT_SCHEDULE = {
         'task': 'weatherdata.tasks.update_metie_buoy_data_model',
         'schedule': crontab(minute='*/30'),
     },
+    'update_metie_buoy_data_model_csv_every_30_minutes': {
+        'task': 'weatherdata.tasks.update_metie_buoy_data_model_csv',
+        'schedule': crontab(minute='*/30'),
+
+    },
 }
 
 LOGIN_REDIRECT_URL = 'latest_forecast'

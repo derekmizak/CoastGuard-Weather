@@ -1,4 +1,6 @@
 from celery import shared_task
+
+from weatherdata.data_retrieval_buoy_metie_csv import get_data_from_metie_buoy_in_csv
 from weatherdata.data_retrieval_metie import fetch_xml_from_url, xml_to_custom_dictionary, coast_to_dictionary
 from weatherdata.urlretrieval import (get_source_urls, update_forecast_met, update_coastal_areas,
                                       update_metocean_buoy_data, update_metie_buoy_data)
@@ -56,3 +58,16 @@ def update_metie_buoy_data_model():
 
             update_metie_buoy_data(buoy)
 
+
+@shared_task
+def update_metie_buoy_data_model_csv():
+    print('Updating met.ie buoy data from csv')
+    list_of_urls = get_source_urls('csv')
+    print('List of urls with csv: ', list_of_urls)
+    buoy_data = get_data_from_metie_buoy_in_csv(list_of_urls[0])
+    print('Buoy data from csv: ', buoy_data)
+    if buoy_data:
+
+        for buoy in buoy_data:
+
+            update_metie_buoy_data(buoy)
