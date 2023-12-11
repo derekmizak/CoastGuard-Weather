@@ -16,13 +16,16 @@ def create_url_for_metie_buoy_data(url):
     # Base URL without the time parameter
     base_url = url
     final_url = base_url + urllib.parse.quote(formatted_time)
+    print('URL for met.ie buoy data: ' + final_url)
 
     return final_url
 
 
 def get_data_from_metie_buoy(url):
+    print('Getting data from met.ie buoy')
     final_url = create_url_for_metie_buoy_data(url)
     response = requests.get(final_url)
+    print(response.status_code)
     if response.status_code == 200:
         json_file = response.json()
         column_names = json_file["table"]["columnNames"]
@@ -31,6 +34,7 @@ def get_data_from_metie_buoy(url):
         #print(column_names)
         # Convert rows to list of dictionaries
         list_of_dicts = [dict(zip(column_names, row)) for row in rows]
+        print(list_of_dicts)
         return list_of_dicts
     else:
         return None
