@@ -45,11 +45,11 @@ def update_irishlights_data():
 
 @shared_task
 def update_metie_buoy_data_model():
-
+    print('Updating met.ie buoy data')
     list_of_urls = get_source_urls('json')
-
+    print('List of urls: ', list_of_urls)
     buoy_data = get_data_from_metie_buoy(list_of_urls[0])
-
+    print('Buoy data: ', buoy_data)
     if buoy_data:
 
         for buoy in buoy_data:
