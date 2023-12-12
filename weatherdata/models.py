@@ -84,9 +84,9 @@ class MetIeBuoyData(models.Model):
 
     station_id = models.CharField(max_length=20)
     CallSign = models.CharField(max_length=20)
-    longitude = models.FloatField()
-    latitude = models.FloatField()
-    time = models.DateTimeField()
+    longitude = models.FloatField(null=True, blank=True)
+    latitude = models.FloatField(null=True, blank=True)
+    time = models.DateTimeField(null=True, blank=True)
     AtmosphericPressure = models.FloatField(null=True, blank=True)
     WindDirection = models.FloatField(null=True, blank=True)
     WindSpeed = models.FloatField(null=True, blank=True)

@@ -88,6 +88,7 @@ def update_metocean_buoy_data(metocean_buoy_data):
 def update_metie_buoy_data(metie_buoy_data):
     # Ensure station_id, CallSign, and time contain data and are not null or empty
     print("Updating met.ie buoy data")
+    print("Received data: " + str(metie_buoy_data))
     required_fields = ['station_id', 'CallSign', 'time']
     if not all(metie_buoy_data.get(field) for field in required_fields):
         print("Required fields are missing data.")

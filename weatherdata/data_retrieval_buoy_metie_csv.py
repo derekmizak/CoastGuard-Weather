@@ -2,6 +2,7 @@ import requests
 import csv
 from io import StringIO
 from .urlretrieval import get_source_urls
+from datetime import datetime
 
 
 def download_csv(url_to_download):
@@ -34,10 +35,16 @@ def get_data_from_metie_buoy_in_csv(source_url: str) -> list:
 
         def update_dict(data):
             # Move 'name' value to 'stationId'
-            data['stationId'] = data.pop('name')
+            data['station_id'] = data.pop('name')
             # Rename 'wmoID' to 'CallSign'
             data['CallSign'] = data.pop('wmoID')
-            data['time'] = data.pop('updated_At')
+            # Parse the date and time
+            dt = datetime.strptime(f"{data['reportDate']} {data['reportTime']}", '%d-%m-%Y %H:%M')
+            # Format into the desired format
+            formatted_time = dt.strftime('%Y-%m-%dT%H:%M:%SZ')
+            # Add the formatted time to the dictionary
+            data['time'] = formatted_time
+            data.pop('updated_At')
             data['AtmosphericPressure'] = data.pop('pressure')
             data['WindDirection'] = data.pop('windDir')
             data['WindSpeed'] = data.pop('windSpeed')
@@ -49,6 +56,12 @@ def get_data_from_metie_buoy_in_csv(source_url: str) -> list:
             data['DewPoint'] = data.pop('dewPoint')
             data['SeaTemperature'] = data.pop('seaTemp')
             data['RelativeHumidity'] = data.pop('humidity')
+            data.pop('reportDate')
+            data.pop('reportTime')
+            data.pop('ID')
+            data.pop('stationId')
+            data.pop('windGustDir')
+            data.pop('created_at')
             return data
 
         # Update each dictionary in the list

@@ -65,9 +65,9 @@ def update_metie_buoy_data_model_csv():
     list_of_urls = get_source_urls('csv')
     print('List of urls with csv: ', list_of_urls)
     buoy_data = get_data_from_metie_buoy_in_csv(list_of_urls[0])
-    print('Buoy data from csv: ', buoy_data)
+    #print('Buoy data from csv: ', buoy_data)
     if buoy_data:
 
         for buoy in buoy_data:
-
+            #print('Buoy from csv: ', buoy)
             update_metie_buoy_data(buoy)
