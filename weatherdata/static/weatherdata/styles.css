@@ -135,6 +135,11 @@ footer {
     width: auto;
 }
 
+.acknowledgments .logo-irish-lights {
+    height: 65px; /* Adjust the size of logos */
+    width: auto;
+}
+
 /* Forecast styles */
 .forecast-section, .buoy-section {
     background-color: #f9f9f9;
@@ -246,6 +251,10 @@ ul {
     }
 
     .acknowledgments .logo {
+        height: 30px;
+    }
+
+    .acknowledgments .logo-irish-lights {
         height: 30px;
     }
 }
