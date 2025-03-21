@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  web:
+    command: >-
+      sh -c "pip install debugpy && 
+      python -m debugpy --listen 0.0.0.0:3000 
+      manage.py runserver 0.0.0.0:8000"
+    ports:
+      - 3003:3000
+
+  celery: 
+    command: >-
+      sh -c "pip install "watchdog[watchmedo]" &&  
+      python -m debugpy --listen 0.0.0.0:3000 worker.py"
+    ports:
+      - 3004:3000

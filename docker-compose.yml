@@ -23,15 +23,18 @@ services:
       - .:/app
     ports:
       - "8000:8000"
+      - "3000:3000"
     env_file:
       - .env
     depends_on:
       - db
       - redis
+    environment:
+      - DEBUG = True
 
   celery:
     build: .
-    command: celery -A project worker --loglevel=info
+    command: celery  -A project worker --loglevel=info
     volumes:
       - .:/app
     env_file:

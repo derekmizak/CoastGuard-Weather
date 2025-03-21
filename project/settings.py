@@ -136,25 +136,26 @@ CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
+
 # Celery beat settings
 from celery.schedules import crontab
 
 CELERY_BEAT_SCHEDULE = {
     'update_weather_forecast_every_30_minutes': {
         'task': 'weatherdata.tasks.update_metie_forecast',
-        'schedule': crontab(minute='*/30'),
+        'schedule': crontab(minute='*/5'),
     },
     'update_irishlights_data_every_30_minutes': {
         'task': 'weatherdata.tasks.update_irishlights_data',
-        'schedule': crontab(minute='*/30'),
+        'schedule': crontab(minute='*/5'),
     },
     'update_metie_buoy_data_model_every_30_minutes': {
         'task': 'weatherdata.tasks.update_metie_buoy_data_model',
-        'schedule': crontab(minute='*/30'),
+        'schedule': crontab(minute='*/5'),
     },
     'update_metie_buoy_data_model_csv_every_30_minutes': {
         'task': 'weatherdata.tasks.update_metie_buoy_data_model_csv',
-        'schedule': crontab(minute='*/30'),
+        'schedule': crontab(minute='*/5'),
 
     },
 }

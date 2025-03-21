@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect, render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy

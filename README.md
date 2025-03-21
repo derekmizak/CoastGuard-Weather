@@ -21,7 +21,9 @@ DEBUG=True
 # Redis settings (optional, if you need to customize)
 REDIS_URL=redis://redis:6379/0
 
-ALLOWED_HOSTS=['127.0.0.1', 'localhost', '0.0.0.0']
+ALLOWED_HOSTS = localhost, 127.0.0.1
+SITE_NAME = http://localhost, http://127.0.0.1
+
 ```
 
 To build docker containers, run the following command:

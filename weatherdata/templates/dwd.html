@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} DWD {% endblock %}
+
+{% block content %}
+    <h1>German Weather Service (DWD)</h1>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Buttons container, aligned horizontally -->
+            <div class="col-12 d-flex justify-content-between p-3">
+                <button class="btn btn-primary btn-custom me-2" id="btn-json-display">Display Sea Warnings</button>
+                <button class="btn btn-secondary btn-custom me-2">Save To DB</button>
+                <button class="btn btn-success btn-custom">Let Celery Do The Work</button>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Scrollable window below the buttons, taking most of the width -->
+            <div class="col-md-12 p-3">
+                <div class="scrollable-window">
+                    <pre id="json-display"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+  
+{% endblock %}

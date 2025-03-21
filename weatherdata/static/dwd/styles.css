@@ -1,0 +1,13 @@
+.btn-custom {
+    width: 15%;
+    margin-bottom: 24px;
+    margin-right: 2rem;
+}
+
+.scrollable-window {
+    height: 50vh;
+    overflow-y: auto;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 15px;
+}

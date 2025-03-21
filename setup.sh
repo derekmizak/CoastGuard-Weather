@@ -26,7 +26,7 @@ EOT
 
 # Create a Python virtual environment
 echo "Creating Python virtual environment..."
-python3.11 -m venv venv
+python -m venv venv
 [ $? -eq 0 ] || exit_on_error "Failed to create Python virtual environment"
 
 # Activate the virtual environment

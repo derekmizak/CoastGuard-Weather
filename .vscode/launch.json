@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Django",
+            "type": "debugpy",
+            "request": "attach",
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}",
+                    "remoteRoot": "/app"
+                }
+            ],
+            "connect": {
+                "host": "127.0.0.1",
+                "port": 3003,
+                "django": true,
+                "justMyCode": false
+            }
+        }
+    ]
+}

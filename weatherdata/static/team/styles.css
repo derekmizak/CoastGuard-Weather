@@ -1,0 +1,41 @@
+.team-container {
+    display: flex;
+    align-items: flex-start;
+    width: 66.67%; /* 2/3 of the width */
+    max-width: 1200px;
+    margin-right: auto;
+    margin-left: 48px;
+    margin-top: 48px;
+}
+
+.team-container img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top;
+    margin-right: 32px;
+}
+
+.description {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .team-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .team-container img {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .description {
+        text-align: center;
+    }
+}

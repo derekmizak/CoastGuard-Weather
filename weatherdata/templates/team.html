@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Team {% endblock %}
+
+{% block content %}
+    <h1>Team</h1>
+
+    <div class="team-container">
+        <div class="image-column">
+            <img src="{% static 'team/img/Derek.jpg' %}" alt="Profile Picture" class="profile-pic">
+        </div>
+        <div class="description-column">
+            <h3>Derek</h3>
+            <p>
+                As a volunteer with Greystone Coastguard, Derek started this project.
+                Before the lifeboat sets off, the weather conditions have to be checked via various official weather reports, 
+                which takes time. This information should now be bundled together on one page.
+            </p>
+        </div>        
+    </div>
+    
+    <div class="team-container">
+        <div class="image-column">
+            <img src="{% static 'team/img/Patrick.jpg' %}" alt="Profile Picture" class="profile-pic">
+        </div>
+        <div class="description-column">
+            <h3>Patrick</h3>
+            <p>Knows Derek from the <a href="https://www.studioweb.com/">Studio Web</a> Mentoring Group and 
+               has started to join this project. In his job, he also aggregates climate data from IIoT sensors from battery
+               production and builds and maintains the application with dashboard.
+            </p>
+        </div>
+    </div>
+  
+{% endblock %}
